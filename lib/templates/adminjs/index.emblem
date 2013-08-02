@@ -1,0 +1,10 @@
+table
+  tr
+    each name in fieldNames
+      th= name
+  each row in this
+    tr
+      group
+        each col in row
+          td
+            = col

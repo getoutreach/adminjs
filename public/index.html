@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AdminJS Demo</title>
+
+  <link rel="stylesheet" href="assets/vendor.css">
+  <link rel="stylesheet" href="assets/app.css">
+
+  <!-- for more details visit: https://github.com/yeoman/grunt-usemin -->
+
+  <!-- build:js(.) assets/vendor.min.js -->
+  <script src="/vendor/jquery/jquery.js"></script>
+  <script src="/vendor/handlebars/handlebars.js"></script>
+  <script src="/vendor/ember/ember.js"></script>
+  <script src="/vendor/sinon.js"></script>
+  <script src="/vendor/loader.js"></script>
+  <script src="/vendor/faker.js"></script>
+  <script src="/vendor/epf.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js(tmp/public) assets/app.min.js -->
+  <script src="/assets/app.js"></script>
+  <script src="/assets/templates.js"></script>
+  <!-- endbuild -->
+</head>
+<body>
+  <script>
+    window.App = requireModule('adminjs/app/app');
+  </script>
+</body>
+</html>

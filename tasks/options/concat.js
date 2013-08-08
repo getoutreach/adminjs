@@ -1,16 +1,31 @@
 module.exports = {
-  app: {
+  "app": {
     src: ['tmp/transpiled/app/**/*.js'],
     dest: 'tmp/public/assets/app.js'
   },
 
-  test: {
+  "lib": {
+    src: ['tmp/transpiled/lib/**/*.js'],
+    dest: 'tmp/dist/adminjs.js'
+  },
+
+  "test": {
     src: 'tmp/transpiled/tests/**/*.js',
     dest: 'tmp/public/tests/tests.js'
   },
 
-  vendorCss: {
+  "vendorCss": {
     src: ['vendor/**/*.css'],
     dest: 'tmp/public/assets/vendor.css'
+  },
+
+  "dist": {
+    src: ['tmp/dist/**/*.js'],
+    dest: 'dist/adminjs.js'
+  },
+
+  "distCss": {
+    src: ['tmp/dist/**/*.css'],
+    dest: 'dist/adminjs.css'
   }
 };

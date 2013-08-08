@@ -5,6 +5,7 @@
 
   <link rel="stylesheet" href="assets/vendor.css">
   <link rel="stylesheet" href="assets/app.css">
+  <link rel="stylesheet" href="dist/adminjs.css">
 
   <!-- for more details visit: https://github.com/yeoman/grunt-usemin -->
 
@@ -17,6 +18,11 @@
   <script src="/vendor/faker.js"></script>
   <script src="/vendor/epf.js"></script>
   <!-- endbuild -->
+
+  <script src="/dist/adminjs.js"></script>
+  <script>
+    window.AJS = requireModule('adminjs/main');
+  </script>
 
   <!-- build:js(tmp/public) assets/app.min.js -->
   <script src="/assets/app.js"></script>

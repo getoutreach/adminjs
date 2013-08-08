@@ -24,7 +24,7 @@ module.exports = {
       }
     },
     files: {
-      "tmp/public/assets/templates.js": "lib/templates/**/*.emblem"
+      "tmp/dist/templates.js": "lib/templates/**/*.emblem"
     }
   }
 };

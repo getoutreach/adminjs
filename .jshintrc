@@ -7,6 +7,7 @@
     "Ember",
     "$",
     "Ep",
+    "AJS",
     "Faker",
     "sinon",
     "define",

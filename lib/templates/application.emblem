@@ -1,9 +1,10 @@
-header
-  h1 AdminJS
+.adminjs
+  header
+    h1 AdminJS
 
-  nav
-    ul
-      each name in resources
-        li= linkTo name | {{name}}
+    nav
+      ul
+        each name in resources
+          li= linkTo name | {{name}}
 
-outlet
+  outlet

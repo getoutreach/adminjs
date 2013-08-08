@@ -16,28 +16,22 @@ module.exports = function(grunt) {
   grunt.registerTask('build',   [
                      'lock',
                      'clean',
-                     // Uncomment this line  & `npm install --save-dev grunt-contrib-coffee` for CoffeeScript support.
-                     // 'coffee',
                      'copy:prepare',
                      'transpile',
                      'jshint',
                      'copy:stage',
-                     'emberTemplates:compile',
-                     // Uncomment this line & `npm install --save-dev grunt-sass` for SASS support.
-                     // 'sass:compile',
-                     // Uncomment this line & `npm install --save-dev grunt-contrib-less` for LESS support.
-                     // 'less:compile'
-                     // Uncomment this line & `npm install --save-dev grunt-contrib-stylus` for stylus/nib support.
-                     //'stylus:compile',
+                     'emberTemplates',
+                     'stylus',
                      'emblem',
                      'concat',
                      'unlock' ]);
 
   grunt.registerTask('build:debug', "Build a development-friendly version of your app.", [
                      'build',
-                     'copy:vendor' ]);
+                     'copy:vendor',
+                     'copy:dist' ]);
 
-  grunt.registerTask('build:dist', "Build a minified & production-ready version of your app.", [
+  grunt.registerTask('build:prod', "Build a minified & production-ready version of your app.", [
                      'useminPrepare',
                      'build',
                      'uglify',
@@ -56,7 +50,7 @@ module.exports = function(grunt) {
   grunt.registerTask('server', "Run your server in development mode, auto-rebuilding when files change.",
                      ['build:debug', 'connect', 'watch:main']);
   grunt.registerTask('server:dist', "Preview production (minified) assets.",
-                     ['build:dist', 'connect:server:keepalive']);
+                     ['build:prod', 'connect:server:keepalive']);
 };
 
 

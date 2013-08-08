@@ -2,8 +2,6 @@ import Resolver from 'resolver';
 
 import server from 'adminjs/app/server';
 
-import AJS from 'adminjs/main';
-
 var App = AJS.Application.create({
   LOG_ACTIVE_GENERATION: true,
   LOG_VIEW_LOOKUPS: true,

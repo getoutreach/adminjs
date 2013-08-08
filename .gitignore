@@ -26,3 +26,5 @@
 /vendor/handlebars/
 /vendor/jquery/
 
+/dist
+

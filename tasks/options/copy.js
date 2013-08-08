@@ -44,4 +44,8 @@ module.exports = {
     src: ['vendor/**/*.js'],
     dest: 'tmp/public/'
   },
+  "dist": {
+    src: ['dist/**/*.js', 'dist/**/*.css'],
+    dest: 'tmp/public/'
+  }
 };

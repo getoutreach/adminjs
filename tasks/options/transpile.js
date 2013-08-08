@@ -34,7 +34,7 @@ module.exports = {
       expand: true,
       cwd: 'tmp/javascript/lib/',
       src: '**/*.js',
-      dest: 'tmp/transpiled/app/'
+      dest: 'tmp/transpiled/lib/'
     }]
   }
 };

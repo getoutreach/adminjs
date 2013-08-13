@@ -1,0 +1,9 @@
+header
+  h1 AdminJS
+
+  nav
+    ul
+      each name in resources
+        li= linkTo name | {{name}}
+
+outlet

@@ -6,7 +6,7 @@ var DATA = {
 };
 
 var orderId = 1;
-for(var customerId = 1; customerId < 500; customerId++) {
+for(var customerId = 1; customerId < 100; customerId++) {
   var customer = {
     id: customerId + '',
     name: Faker.Name.findName(),

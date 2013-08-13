@@ -1,0 +1,150 @@
+@import url(//fonts.googleapis.com/css?family=Lato:300,400,700,400italic)
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css)
+
+@import 'nib'
+
+global-reset()
+
+
+blue-color = #2693FF
+highlight-color = #F8F8E6
+hpad = 48px
+
+
+
+blue-button()
+  border-radius 4px
+  font-size 12px
+  color #fff
+  font-weight bold
+  padding 4px 8px
+  background blue-color
+  border 1px solid darken(blue-color, 10%)
+  text-transform capitalize
+
+  &:hover
+    background darken(blue-color, 8%)
+
+
+
+
+body, html
+  font-family Lato
+  color #111
+
+a
+  color inherit
+  text-decoration none
+
+.adminjs-application-view
+
+  > header
+    height = 48px
+    h1
+      display inline
+      font-size 24px
+      font-weight bold
+      float left
+      padding 0 hpad
+      line-height height
+    nav
+      display inline-block
+      line-height height
+      vertical-align bottom
+      ul
+        display: inline-block
+        vertical-align bottom
+        li
+          display inline-block
+          line-height 36px
+          vertical-align bottom
+          a
+            font-size 16px
+            padding 0 16px
+            display inline-block
+            
+            margin-left 8px
+            text-transform capitalize
+
+            &.active
+              font-weight bold
+              background #efefef
+              border-top 1px solid #ccc
+              border-left 1px solid #ccc
+              border-right 1px solid #ccc
+              box-sizing border-box
+              padding-bottom 1px
+              margin-bottom -1px
+
+.adminjs-index-view
+  > header
+    padding 8px hpad
+    background #efefef
+    border-bottom: 1px solid #ccc
+    border-top: 1px solid #ccc
+    clearfix()
+
+    h1
+      text-transform capitalize
+      font-size 16px
+      float left
+
+    ul.actions
+      float right
+      clearfix()
+
+      li
+        float: left
+
+      a
+        blue-button()
+
+.adminjs-search-view
+
+  text-align center
+
+  #fulltext
+    line-height 16px
+    font-size 14px
+    width 400px
+    padding 5px 8px
+    box-sizing border-box
+    margin 0
+    border 1px solid #ccc
+
+    &:focus
+      outline none
+      border-color blue-color
+
+  .icon-search
+    line-height 28px
+    margin-left: -20px
+    color: #999
+
+.adminjs-index-table-view
+  margin-top -1px
+  width 100%
+  border-collapse collapse
+  font-size 14px
+  th, td
+    padding 8px
+    border 1px solid #ccc
+    font-weight lighter
+    &:first-of-type
+      padding-left hpad
+      border-left none
+    &:last-of-type
+      padding-right hpad
+      border-right none
+  th
+    background #f8f8f8
+    text-transform uppercase
+    font-weight normal
+
+  tr:hover
+    td
+      background #ffffee
+
+
+

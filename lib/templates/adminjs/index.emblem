@@ -1,4 +1,9 @@
-
-
-h1 {{resourceName}}
+header
+  outlet search
+  h1 {{config.plural}}
+  ul.actions
+    li
+      a.create href="#"
+        .icon-plus
+        |  Create {{config.name}}
 view view.TableView

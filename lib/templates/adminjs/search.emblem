@@ -1,2 +1,2 @@
-Ember.TextField#fulltext
+Ember.TextField#fulltext valueBinding="q"
 i.icon-search

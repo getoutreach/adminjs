@@ -33,14 +33,61 @@ for(var customerId = 1; customerId < 100; customerId++) {
   DATA.customers[customerId + ''] = customer;
 }
 
+// extract out url and params
+function parseUrl(url) {
+  var parts = url.split('?');
+  var path = parts[0];
+  var query = parts[1];
+
+  if(query) {
+
+    var match,
+        pl     = /\+/g,  // Regex for replacing addition symbol with a space
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); };
+
+    var params = {};
+    while (match = search.exec(query))
+       params[decode(match[1])] = decode(match[2]);
+
+   }
+
+   return {path: path, params: params};
+}
+
+// returns true or false if the hash would match the search criteria
+function emulateSearch(hash, params) {
+  // for not just "fulltext" param
+  var q = params.q.toLowerCase();
+
+  for(var key in hash) {
+    if(!hash.hasOwnProperty(key)) continue;
+
+    var value = hash[key];
+    if(typeof value !== "string") continue;
+
+    if(value.toLowerCase().indexOf(q) !== -1) return true;
+  }
+
+  return false;
+}
+
 var server = sinon.fakeServer.create();
 
-server.respondWith(/\/([^\/]*)/, function(xhr, resource) {
+server.respondWith(/\/([^\/]*)/, function(xhr, url) {
+  var parsed = parseUrl(url);
+  var resource = parsed.path;
+  var params = parsed.params;
   var data = DATA[resource];
   var arr = [];
   for(var id in data) {
     if(!data.hasOwnProperty(id)) continue;
-    arr.push(data[id]);
+    var hash = data[id];
+
+    if(!params || emulateSearch(hash, params)) {
+      arr.push(hash);
+    }
+    
   }
   var res = {};
   res[resource] = arr;

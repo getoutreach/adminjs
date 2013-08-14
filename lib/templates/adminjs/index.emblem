@@ -5,5 +5,4 @@ header
     li
       a.create href="#"
         .icon-plus
-        |  Create {{config.name}}
 view view.TableView

@@ -17,7 +17,7 @@ for(var customerId = 1; customerId < 100; customerId++) {
   var numOrders = Math.floor(Math.random() * 4);
   var maxId = orderId + numOrders;
   var orderIds = [];
-  for(;orderId < maxId; orderId++) {
+  for(;orderId <= maxId; orderId++) {
     var order = {
       id: orderId + '',
       total: 29.99,
@@ -50,15 +50,16 @@ function parseUrl(url) {
     while (match = search.exec(query))
        params[decode(match[1])] = decode(match[2]);
 
+    return {path: path, params: params};
    }
 
-   return {path: path, params: params};
+   return {path: path};
 }
 
 // returns true or false if the hash would match the search criteria
 function emulateSearch(hash, params) {
   // for not just "fulltext" param
-  var q = params.q.toLowerCase();
+  var q = params.q && params.q.toLowerCase();
 
   for(var key in hash) {
     if(!hash.hasOwnProperty(key)) continue;
@@ -66,7 +67,7 @@ function emulateSearch(hash, params) {
     var value = hash[key];
     if(typeof value !== "string") continue;
 
-    if(value.toLowerCase().indexOf(q) !== -1) return true;
+    if(!q || value.toLowerCase().indexOf(q) !== -1) return true;
   }
 
   return false;
@@ -77,20 +78,36 @@ var server = sinon.fakeServer.create();
 server.respondWith(/\/([^\/]*)/, function(xhr, url) {
   var parsed = parseUrl(url);
   var resource = parsed.path;
-  var params = parsed.params;
+  var params = parsed.params || {};
   var data = DATA[resource];
   var arr = [];
+
+  var perPage = params.per_page && parseInt(params.per_page) || 24;
+  var totalEntries = 0;
+  var page = params.page && parseInt(params.page) || 1;
+
+  var start = (page - 1) * perPage;
+
   for(var id in data) {
     if(!data.hasOwnProperty(id)) continue;
     var hash = data[id];
 
-    if(!params || emulateSearch(hash, params)) {
-      arr.push(hash);
+    if(emulateSearch(hash, params)) {
+      if(totalEntries++ >= start && totalEntries <= start + perPage) {
+        arr.push(hash);
+      }
     }
-    
   }
+
   var res = {};
   res[resource] = arr;
+  res.meta = {
+    per_page: perPage,
+    total_entries: totalEntries,
+    current_page: page
+  };
+
+  console.log(res);
 
   xhr.respond(200, { "Content-Type": "application/json" }, JSON.stringify(res));
 });

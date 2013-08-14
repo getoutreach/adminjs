@@ -9,6 +9,10 @@ var App = AJS.Application.create({
   resolver: Resolver
 });
 
+import Adapter from 'adminjs/app/adapter';
+
+App.Adapter = Adapter;
+
 App.configure(function() {
   this.manage('customer');
   this.manage('order');

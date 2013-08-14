@@ -28,7 +28,6 @@ blue-button()
 
 
 
-
 body, html
   font-family Lato
   color #111
@@ -77,7 +76,7 @@ a
               padding-bottom 1px
               margin-bottom -1px
 
-.adminjs-index-view
+.adminjs-index-view, .adminjs-resource-view
   > header
     padding 8px hpad
     background #efefef
@@ -122,29 +121,41 @@ a
     margin-left: -20px
     color: #999
 
-.adminjs-index-table-view
-  margin-top -1px
-  width 100%
-  border-collapse collapse
-  font-size 14px
-  th, td
-    padding 8px
-    border 1px solid #ccc
-    font-weight lighter
-    &:first-of-type
-      padding-left hpad
-      border-left none
-    &:last-of-type
-      padding-right hpad
-      border-right none
-  th
-    background #f8f8f8
-    text-transform uppercase
-    font-weight normal
+.adminjs-index-table-view, .adminjs-resource-view
+  &, table
+    margin-top -1px
+    width 100%
+    border-collapse collapse
+    font-size 14px
+    th, td
+      padding 8px
+      border 1px solid #ccc
+      font-weight lighter
+      &:first-of-type
+        padding-left hpad
+        border-left none
+      &:last-of-type
+        padding-right hpad
+        border-right none
 
-  tr:hover
-    td
-      background #ffffee
+      &.field-name
+        text-transform uppercase
+        text-align right
+    th
+      background #f8f8f8
+      text-transform uppercase
+      font-weight normal
+
+    tr:hover
+      td
+        background #ffffee
+
+    a
+      font-weight: bold
+      color: blue-color
+
+      &:hover
+        text-decoration underline
 
 
 

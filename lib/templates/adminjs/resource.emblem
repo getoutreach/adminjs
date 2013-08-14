@@ -1,0 +1,12 @@
+header
+  h1 {{config.name}} {{id}}
+
+table
+  tr
+    th.field-name Field
+    th Value
+
+  each f in config.fields
+    tr
+      td.field-name= f.name
+      td {{field f.name}}

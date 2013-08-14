@@ -19,11 +19,6 @@ module.exports = {
     dest: 'tmp/public/assets/vendor.css'
   },
 
-  "dist": {
-    src: ['tmp/dist/**/*.js'],
-    dest: 'dist/adminjs.js'
-  },
-
   "distCss": {
     src: ['tmp/dist/**/*.css'],
     dest: 'dist/adminjs.css'

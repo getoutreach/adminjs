@@ -9,6 +9,26 @@ module.exports = function(grunt) {
 
   grunt.initConfig(config);
 
+  grunt.registerMultiTask('browser', "Export a module to the window", function() {
+    var opts = this.options();
+    this.files.forEach(function(f) {
+      var output = ["(function(globals) {"];
+   
+      output.push.apply(output, f.src.map(grunt.file.read));
+   
+      output.push(grunt.template.process(
+        'window.<%= namespace %> = requireModule("<%= barename %>");', { 
+        data: {
+          namespace: opts.namespace,
+          barename: opts.barename
+        }
+      }));
+      output.push('})(window);');
+   
+      grunt.file.write(f.dest, grunt.template.process(output.join("\n")));
+    });
+  });
+
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
   grunt.loadTasks('tasks');
 
@@ -24,6 +44,7 @@ module.exports = function(grunt) {
                      'stylus',
                      'emblem',
                      'concat',
+                     'browser',
                      'unlock' ]);
 
   grunt.registerTask('build:debug', "Build a development-friendly version of your app.", [

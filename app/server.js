@@ -82,9 +82,9 @@ server.respondWith(/\/([^\/]*)/, function(xhr, url) {
   var data = DATA[resource];
   var arr = [];
 
-  var perPage = params.per_page && parseInt(params.per_page) || 24;
+  var perPage = params.per_page && parseInt(params.per_page, 10) || 24;
   var totalEntries = 0;
-  var page = params.page && parseInt(params.page) || 1;
+  var page = params.page && parseInt(params.page, 10) || 1;
 
   var start = (page - 1) * perPage;
 

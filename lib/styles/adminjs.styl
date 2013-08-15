@@ -28,6 +28,9 @@ blue-button()
 
 
 
+html
+  overflow-y scroll
+
 body, html
   font-family Lato
   color #111
@@ -105,6 +108,7 @@ a
 .adminjs-search-view
 
   display inline-block
+  position relative
 
   #fulltext
     line-height 16px
@@ -119,10 +123,24 @@ a
       outline none
       border-color blue-color
 
+  .icons
+    position absolute
+    right 0
+    top 0
   .icon-search
     line-height 28px
-    margin-left: -20px
     color: #999
+    padding-right 8px
+  .spinner-display
+    margin-top: 16px
+    margin-right: 16px
+
+.adminjs-index-table-view
+  th, td
+    white-space nowrap
+    text-overflow ellipsis
+    overflow hidden
+    max-width 240px
 
 .adminjs-index-table-view, .adminjs-resource-view table
     margin-top -1px

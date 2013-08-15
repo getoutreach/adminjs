@@ -1,2 +1,7 @@
 Ember.TextField#fulltext valueBinding="q"
-i.icon-search
+.icons
+  if content.isLoading
+    spinner-display
+  else
+    i.icon-search
+    

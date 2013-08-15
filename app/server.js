@@ -11,6 +11,7 @@ for(var customerId = 1; customerId < 100; customerId++) {
     id: customerId + '',
     name: Faker.Name.findName(),
     email: Faker.Internet.email(),
+    notes: Faker.Lorem.paragraphs(),
     created_at: new Date()
   };
 
@@ -75,7 +76,9 @@ function emulateSearch(hash, params) {
 
 var server = sinon.fakeServer.create();
 
+
 server.respondWith(/\/([^\/]*)/, function(xhr, url) {
+  console.log(url);
   var parsed = parseUrl(url);
   var resource = parsed.path;
   var params = parsed.params || {};

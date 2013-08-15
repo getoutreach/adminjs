@@ -1,6 +1,6 @@
 module.exports = {
   "dist": {
-    src: ["vendor/loader.js", "tmp/dist/**/*.js"],
+    src: ["vendor/spin.js", "vendor/loader.js", "tmp/dist/**/*.js"],
     dest: "dist/adminjs.js",
     options: {
       barename: "adminjs/main",

@@ -9,6 +9,7 @@
     "Ep",
     "AJS",
     "Faker",
+    "Spinner",
     "sinon",
     "define",
     "console",

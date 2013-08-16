@@ -1,5 +1,5 @@
 header
-  h1 AdminJS
+  h1= namespace.title
 
   nav
     ul

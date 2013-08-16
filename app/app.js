@@ -6,7 +6,8 @@ var App = AJS.Application.create({
   LOG_ACTIVE_GENERATION: true,
   LOG_VIEW_LOOKUPS: true,
   modulePrefix: 'adminjs/app', // TODO: loaded via config
-  resolver: Resolver
+  resolver: Resolver,
+  title: 'AdminJS'
 });
 
 import Adapter from 'adminjs/app/adapter';

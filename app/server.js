@@ -6,7 +6,7 @@ var DATA = {
 };
 
 var orderId = 1;
-for(var customerId = 1; customerId < 100; customerId++) {
+for(var customerId = 1; customerId <= 10000; customerId++) {
   var customer = {
     id: customerId + '',
     name: Faker.Name.findName(),
@@ -18,11 +18,12 @@ for(var customerId = 1; customerId < 100; customerId++) {
   var numOrders = Math.floor(Math.random() * 4);
   var maxId = orderId + numOrders;
   var orderIds = [];
+  var orderStates = ['new', 'fulfilled'];
   for(;orderId <= maxId; orderId++) {
     var order = {
       id: orderId + '',
       total: 29.99,
-      state: 'new',
+      state: orderStates[Math.floor(Math.random() * orderStates.length)],
       created_at: new Date(),
       customer_id: customerId
     };

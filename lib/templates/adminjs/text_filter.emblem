@@ -1,2 +1,2 @@
-label {{view.filter.name}}:
-Ember.TextField valueBinding=view.value
+label {{filter.name}}:
+Ember.TextField valueBinding=value

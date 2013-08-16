@@ -31,7 +31,13 @@ App.configure(function() {
       type: 'text'
     }]
   });
-  this.manage('order');
+  this.manage('order', {
+    filters: [{
+      name: 'state',
+      type: 'checkboxes',
+      options: ['new', 'fulfilled']
+    }]
+  });
 });
 
 export default App;

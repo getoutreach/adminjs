@@ -6,4 +6,9 @@ header
       each name in resources
         li= linkTo name | {{name}}
 
+  .credits
+    a href="http://adminjs.com" adminjs
+    |  by 
+    a href="https://grouptalent.com" GroupTalent
+
 outlet

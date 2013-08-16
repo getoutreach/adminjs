@@ -1,0 +1,5 @@
+label {{filter.name}}:
+each options
+  label.check
+    Ember.Checkbox valueBinding=value checkedBinding=checked
+    = value

@@ -79,6 +79,7 @@ var server = sinon.fakeServer.create();
 
 server.respondWith(/\/([^\/]*)/, function(xhr, url) {
   console.log(url);
+
   var parsed = parseUrl(url);
   var resource = parsed.path;
   var params = parsed.params || {};
@@ -109,8 +110,6 @@ server.respondWith(/\/([^\/]*)/, function(xhr, url) {
     total_entries: totalEntries,
     current_page: page
   };
-
-  console.log(res);
 
   xhr.respond(200, { "Content-Type": "application/json" }, JSON.stringify(res));
 });

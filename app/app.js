@@ -14,7 +14,23 @@ import Adapter from 'adminjs/app/adapter';
 App.Adapter = Adapter;
 
 App.configure(function() {
-  this.manage('customer');
+  this.manage('customer', {
+    filters: [{
+      name: 'Name',
+      param: 'name',
+      type: 'text'
+    },
+    {
+      name: 'Email',
+      param: 'email',
+      type: 'text'
+    },
+    {
+      name: 'Notes',
+      param: 'notes',
+      type: 'text'
+    }]
+  });
   this.manage('order');
 });
 

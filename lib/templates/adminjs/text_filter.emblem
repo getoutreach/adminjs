@@ -1,0 +1,2 @@
+label {{view.filter.name}}:
+Ember.TextField valueBinding=view.value

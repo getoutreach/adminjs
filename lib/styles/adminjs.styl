@@ -94,6 +94,7 @@ a
       text-transform capitalize
       font-size 16px
       float left
+      white-space nowrap
 
     ul.actions
       float right
@@ -108,7 +109,10 @@ a
 .adminjs-search-view
 
   display inline-block
-  position relative
+
+  .fulltext-container
+    display inline-block
+    position relative
 
   #fulltext
     line-height 16px
@@ -134,6 +138,44 @@ a
   .spinner-display
     margin-top: 16px
     margin-right: 16px
+
+  .toggle-more
+    padding-left 8px
+    font-size 20px
+    color #999
+
+    &:hover
+      color blue-color
+
+
+.adminjs-filter-view
+
+  display inline-block
+  margin 4px 8px
+
+  .icon-filter
+    color: #999
+    font-size 11px
+
+  label
+    color #666
+    font-size 11px
+    text-transform uppercase
+    padding-right 8px
+
+  input[type="text"]
+    line-height 11px
+    font-size 11px
+    width 160px
+    padding 4px 6px
+    box-sizing border-box
+    margin 0
+    border 1px solid #ccc
+
+    &:focus
+      outline none
+      border-color blue-color
+
 
 .adminjs-index-table-view
   th, td
@@ -165,6 +207,7 @@ a
       background #f8f8f8
       text-transform uppercase
       font-weight normal
+      font-size 12px
 
     tr:hover
       td

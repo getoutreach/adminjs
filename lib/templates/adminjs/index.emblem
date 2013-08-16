@@ -1,6 +1,6 @@
 header
   outlet search
-  h1 {{config.plural}}
+  h1 {{config.plural}} - {{content.totalEntries}}
   ul.actions
     li
       a.create href="#"

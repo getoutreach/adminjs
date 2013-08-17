@@ -1,5 +1,21 @@
 header
   h1 {{config.name}} {{id}}
+  ul.actions
+    if isEditing
+      li
+        a.cancel href="#" click="cancel"
+          .icon-remove
+      li
+        a.save href="#" click="save"
+          .icon-ok
+    else
+      li
+        a.remove href="#" click="remove"
+          .icon-trash
+      li
+        a.edit href="#" click="edit"
+          .icon-edit
+      
 
 table
   tr
@@ -9,4 +25,8 @@ table
   each f in config.fields
     tr
       td.field-name= f.name
-      td {{field f.name}}
+      td
+        if isEditing
+          = field f.name edit=true
+        else
+          = field f.name

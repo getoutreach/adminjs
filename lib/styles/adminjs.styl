@@ -8,24 +8,32 @@ global-reset()
 
 
 blue-color = #2693FF
+red-color = #D93600
 highlight-color = #F8F8E6
 hpad = 48px
 
 
-
-blue-button()
+button(color)
   border-radius 4px
   font-size 12px
   color #fff
   font-weight bold
   padding 4px 8px
-  background blue-color
-  border 1px solid darken(blue-color, 10%)
+  background color
+  border 1px solid darken(color, 10%)
   text-transform capitalize
 
   &:hover
-    background darken(blue-color, 8%)
+    background darken(color, 8%)
 
+blue-button()
+  button(blue-color)
+
+gray-button()
+  button(#666)
+
+red-button()
+  button(red-color)
 
 
 html
@@ -83,7 +91,7 @@ a
       float right
       font-size 11px
       margin-top 18px
-      margin-right 18px
+      margin-right hpad
       a
         color blue-color
 
@@ -113,9 +121,16 @@ a
 
       li
         float: left
+        margin-left 6px
 
       a
         blue-button()
+
+        &.remove
+          red-button()
+
+        &.cancel
+          gray-button()
 
 .adminjs-search-view
 
@@ -191,7 +206,6 @@ a
       outline none
       border-color blue-color
 
-
 .adminjs-index-table-view
   th, td
     white-space nowrap
@@ -234,6 +248,19 @@ a
 
       &:hover
         text-decoration underline
+
+    .text-editor
+      input[type="text"]
+        box-sizing border-box
+        margin 0
+        border 1px solid #ccc
+        margin-top -3px
+        margin-bottom -3px
+        width 256px
+
+        &:focus
+          outline none
+          border-color blue-color
 
 
 

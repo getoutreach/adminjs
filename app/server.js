@@ -5,10 +5,18 @@ var DATA = {
   orders: {}
 };
 
+var IDS = {};
+function createId(resourceName) {
+  var id = (IDS[resourceName] || 0)+1;
+  IDS[resourceName] = id;
+  return id + '';
+}
+
+
 var orderId = 1;
-for(var customerId = 1; customerId <= 10000; customerId++) {
+for(var i = 1; i <= 10000; i++) {
   var customer = {
-    id: customerId + '',
+    id: createId('customer'),
     name: Faker.Name.findName(),
     email: Faker.Internet.email(),
     notes: Faker.Lorem.paragraphs(),
@@ -16,23 +24,27 @@ for(var customerId = 1; customerId <= 10000; customerId++) {
   };
 
   var numOrders = Math.floor(Math.random() * 4);
-  var maxId = orderId + numOrders;
   var orderIds = [];
   var orderStates = ['new', 'fulfilled'];
-  for(;orderId <= maxId; orderId++) {
+  for(var j = 0; j < numOrders; j++) {
     var order = {
-      id: orderId + '',
+      id: createId('order'),
       total: 29.99,
       state: orderStates[Math.floor(Math.random() * orderStates.length)],
       created_at: new Date(),
-      customer_id: customerId
+      customer_id: customer.id
     };
-    DATA.orders[orderId + ''] = order;
-    orderIds.push(orderId + '');
+    DATA.orders[order.id] = order;
+    orderIds.push(orderId);
   }
   customer.order_ids = orderIds;
 
-  DATA.customers[customerId + ''] = customer;
+  DATA.customers[customer.id] = customer;
+}
+
+// TODO swap out with inflector
+function singularize(plural) {
+  return plural.substring(0, plural.length - 1);
 }
 
 // extract out url and params
@@ -78,9 +90,7 @@ function emulateSearch(hash, params) {
 var server = sinon.fakeServer.create();
 
 
-server.respondWith(/\/([^\/]*)/, function(xhr, url) {
-  console.log(url);
-
+server.respondWith("GET", /\/([^\/]*)/, function(xhr, url) {
   var parsed = parseUrl(url);
   var resource = parsed.path;
   var params = parsed.params || {};
@@ -115,11 +125,43 @@ server.respondWith(/\/([^\/]*)/, function(xhr, url) {
   xhr.respond(200, { "Content-Type": "application/json" }, JSON.stringify(res));
 });
 
-server.respondWith(/\/([^\/]*)\/(\d+)/, function (xhr, resource, id) {
-  var res = DATA[resource][id];
+server.respondWith("GET", /\/([^\/]*)\/(\d+)/, function (xhr, resource, id) {
+  var data = DATA[resource][id];
+  var res = {};
+  res[resource] = data;
 
   xhr.respond(200, { "Content-Type": "application/json" }, JSON.stringify(res));
 });
+
+server.respondWith("PUT", /\/([^\/]*)\/(\d+)/, function (xhr, resource, id) {
+  var hash = JSON.parse(xhr.requestBody);
+  hash = hash[singularize(resource)];
+  var data = DATA[resource][id];
+  var res = {};
+  res[resource] = data;
+
+  Ember.merge(data, hash);
+
+  xhr.respond(200, { "Content-Type": "application/json" }, JSON.stringify(res));
+});
+
+server.respondWith("POST", /\/([^\/]*)/, function(xhr, resource) {
+  var hash = JSON.parse(xhr.requestBody);
+  hash = hash[singularize(resource)];
+  hash.id = createId(resource);
+  DATA[resource][hash.id] = hash;
+  var res = {};
+  res[resource] = hash;
+
+  xhr.respond(200, { "Content-Type": "application/json" }, JSON.stringify(res));
+});
+
+server.respondWith("DELETE", /\/([^\/]*)\/(\d+)/, function (xhr, resource, id) {
+  delete DATA[resource][id];
+
+  xhr.respond(200, { "Content-Type": "application/json" }, JSON.stringify({}));
+});
+
 
 server.autoRespond = true;
 

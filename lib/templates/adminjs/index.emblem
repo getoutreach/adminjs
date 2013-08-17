@@ -3,6 +3,6 @@ header
   h1 {{config.plural}} - {{content.totalEntries}}
   ul.actions
     li
-      a.create href="#"
+      a.create href="#" click=createResource
         .icon-plus
 view view.TableView

@@ -16,5 +16,5 @@ if hasFilters
 
 if showMore
   .filters
-    each filter in view.filterViews
+    each filter in view.filters
       view filter

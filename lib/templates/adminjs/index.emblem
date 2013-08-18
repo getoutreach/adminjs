@@ -5,4 +5,5 @@ header
     li
       a.create href="#" click=createResource
         .icon-plus
+
 view view.TableView

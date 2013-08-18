@@ -268,4 +268,11 @@ a
           border-color blue-color
 
 
+.has-many-renderer
+  li
+    display: inline
+    &:after
+      content: ','
+    &:last-of-type:after
+      content: ''
 

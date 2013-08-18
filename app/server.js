@@ -12,7 +12,6 @@ function createId(resourceName) {
   return id + '';
 }
 
-var orderId = 1;
 for(var i = 1; i <= 10000; i++) {
   var customer = {
     id: createId('customer'),
@@ -38,7 +37,7 @@ for(var i = 1; i <= 10000; i++) {
       customer_id: customer.id
     };
     DATA.orders[order.id] = order;
-    orderIds.push(orderId);
+    orderIds.push(order.id);
   }
   customer.order_ids = orderIds;
 

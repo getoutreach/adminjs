@@ -24,7 +24,7 @@ table
 
   each f in config.fields
     tr
-      td.field-name= f.name
+      td.field-name= f.title
       td
         if isEditing
           = field f.name edit=true

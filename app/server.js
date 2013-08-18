@@ -12,7 +12,6 @@ function createId(resourceName) {
   return id + '';
 }
 
-
 var orderId = 1;
 for(var i = 1; i <= 10000; i++) {
   var customer = {
@@ -44,11 +43,6 @@ for(var i = 1; i <= 10000; i++) {
   customer.order_ids = orderIds;
 
   DATA.customers[customer.id] = customer;
-}
-
-// TODO swap out with inflector
-function singularize(plural) {
-  return plural.substring(0, plural.length - 1);
 }
 
 // extract out url and params
@@ -139,7 +133,7 @@ server.respondWith("GET", /\/([^\/]*)\/(\d+)/, function (xhr, resource, id) {
 
 server.respondWith("PUT", /\/([^\/]*)\/(\d+)/, function (xhr, resource, id) {
   var hash = JSON.parse(xhr.requestBody);
-  hash = hash[singularize(resource)];
+  hash = hash[Ember.String.singularize(resource)];
   var data = DATA[resource][id];
   var res = {};
   res[resource] = data;
@@ -151,7 +145,7 @@ server.respondWith("PUT", /\/([^\/]*)\/(\d+)/, function (xhr, resource, id) {
 
 server.respondWith("POST", /\/([^\/]*)/, function(xhr, resource) {
   var hash = JSON.parse(xhr.requestBody);
-  hash = hash[singularize(resource)];
+  hash = hash[Ember.String.singularize(resource)];
   hash.id = createId(resource);
   DATA[resource][hash.id] = hash;
   var res = {};

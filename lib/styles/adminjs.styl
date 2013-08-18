@@ -50,6 +50,8 @@ a
 .adminjs-application-view
 
   > header
+    position relative
+    z-index 100
     height = 48px
     h1
       display inline
@@ -101,6 +103,7 @@ a
 .adminjs-index-view, .adminjs-resource-view
 
   > header
+    position relative
     padding 8px hpad
     background #efefef
     border-bottom: 1px solid #ccc
@@ -218,6 +221,8 @@ a
     width 100%
     border-collapse collapse
     font-size 14px
+    height 100
+    overflow scroll
     th, td
       padding 8px
       border 1px solid #ccc

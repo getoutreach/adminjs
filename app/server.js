@@ -17,10 +17,14 @@ var orderId = 1;
 for(var i = 1; i <= 10000; i++) {
   var customer = {
     id: createId('customer'),
-    name: Faker.Name.findName(),
+    first_name: Faker.Name.firstName(),
+    last_name: Faker.Name.lastName(),
     email: Faker.Internet.email(),
     notes: Faker.Lorem.paragraphs(),
-    created_at: new Date()
+    created_at: new Date(),
+    last_ip: Faker.Internet.ip(),
+    company: Faker.Company.companyName(),
+    phone: Faker.PhoneNumber.phoneNumber()
   };
 
   var numOrders = Math.floor(Math.random() * 4);

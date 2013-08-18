@@ -1,8 +1,12 @@
 var Customer = Ep.Model.extend({
-  name: Ep.attr('string'),
+  firstName: Ep.attr('string'),
+  lastName: Ep.attr('string'),
   email: Ep.attr('string'),
   createdAt: Ep.attr('date'),
   notes: Ep.attr('string'),
+  lastIp: Ep.attr('string'),
+  company: Ep.attr('string'),
+  phone: Ep.attr('string'),
 
   orders: Ep.hasMany('order')
 });

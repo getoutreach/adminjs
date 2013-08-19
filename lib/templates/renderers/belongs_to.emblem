@@ -1,2 +1,5 @@
-linkTo field.name value
+if field.isManaged
+  linkTo field.name value
+    value.id
+else
   value.id

@@ -1,4 +1,13 @@
-each rel in value
-  li
-    linkTo field.modelTypeName rel
-      rel.id
+if value.length
+  if showAll
+    each rel in value
+      li
+        if field.isManaged
+          linkTo field.modelTypeName rel
+            rel.id
+        else
+          rel.id
+  else
+    a href="#" click=show
+      | {{value.length}} {{field.modelTypePlural}}
+

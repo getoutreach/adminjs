@@ -6,6 +6,10 @@
     else
       i.icon-search
 
+if content.isLoading
+  .fixed-indicator
+    spinner-display color="#fff"
+
 if hasFilters
   a.toggle-more click=toggleMore href="#"
     if showMore

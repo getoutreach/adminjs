@@ -22,5 +22,11 @@ module.exports = {
   "distCss": {
     src: ['tmp/dist/**/*.css'],
     dest: 'dist/adminjs.css'
+  },
+
+  // TODO: clean this up and put elsewhere
+  "publicCss": {
+    src: ['tmp/dist/**/*.css'],
+    dest: 'tmp/public/assets/adminjs.css'
   }
 };

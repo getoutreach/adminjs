@@ -25,6 +25,7 @@ function lock(req, res, next) {
 function middleware(connect, options) {
   return [
     lock,
+    require('connect-livereload')(),
     connect['static'](options.base),
     connect.directory(options.base)
   ];

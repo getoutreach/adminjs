@@ -1,7 +1,7 @@
 {
   "name": "adminjs",
   "namespace": "adminjs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "directories": {
     "doc": "doc",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/stefanpenner/app-kit.git"
+    "url": "git://github.com/GroupTalent/adminjs.git"
   },
   "author": "",
   "license": "BSD",
@@ -43,6 +43,7 @@
     "lockfile": "~>0.3.0",
     "grunt-contrib-stylus": "~0.6.0",
     "grunt-emblem": "~0.1.0",
-    "grunt-ember-script": "0.0.1"
+    "grunt-ember-script": "0.0.1",
+    "connect-livereload": "~0.2.0"
   }
 }

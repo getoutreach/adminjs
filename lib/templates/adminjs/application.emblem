@@ -3,8 +3,8 @@ header
 
   nav
     ul
-      each name in resources
-        li= linkTo name | {{name}}
+      each resources
+        li= linkTo this | {{this}}
 
   .credits
     a href="http://adminjs.com" adminjs

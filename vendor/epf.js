@@ -2841,6 +2841,7 @@
         require('/lib/model/index.js', module);
         require('/lib/session/merge_strategies/index.js', module);
         var get = Ember.get, set = Ember.set;
+        Ep.PromiseArray = Ember.ArrayProxy.extend(Ember.PromiseProxyMixin);
         Ep.Session = Ember.Object.extend({
             mergeStrategy: Ep.PerField,
             _dirtyCheckingSuspended: false,
@@ -2981,17 +2982,18 @@
                     type = this.lookupType(type);
                 }
                 var session = this;
-                return this.adapter.query(type, query).then(function (models) {
-                    var merged = Ep.ModelArray.create({
-                            session: session,
-                            content: []
+                var prom = this.adapter.query(type, query).then(function (models) {
+                        var merged = Ep.ModelArray.create({
+                                session: session,
+                                content: []
+                            });
+                        set(merged, 'meta', get(models, 'meta'));
+                        models.forEach(function (model) {
+                            merged.pushObject(session.merge(model));
                         });
-                    set(merged, 'meta', get(models, 'meta'));
-                    models.forEach(function (model) {
-                        merged.pushObject(session.merge(model));
+                        return merged;
                     });
-                    return merged;
-                });
+                return Ep.PromiseArray.create({ promise: prom });
             },
             refresh: function (model) {
                 var session = this;
@@ -3310,7 +3312,6 @@
                 name: 'epf.container',
                 initialize: function (container, application) {
                     Ep.__container__ = container;
-                    application.register('store:main', application.Store || Ep.Store);
                     application.register('adapter:main', application.Adapter || Ep.RestAdapter);
                     application.register('session:base', application.Session || Ep.Session, { singleton: false });
                     application.register('session:child', application.ChildSession || Ep.ChildSession, { singleton: false });
